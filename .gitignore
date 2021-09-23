@@ -2,7 +2,6 @@
 
 # dependencies
 /_build
-/config/dev.exs
 /deps
 
 # testing

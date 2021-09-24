@@ -7,8 +7,8 @@ defmodule Kargohackathon.Repo.Migrations.CreateTrucks do
       add :truck_type, :string, [size: 50, null: false]
       add :plate_type, :string, null: false
       add :production_year, :string, [size: 4, null: false]
-      add :stnk_upload, :string, null: true
-      add :kir_upload, :string, null: true
+      add :stnk_upload, :text, null: true
+      add :kir_upload, :text, null: true
       add :status, :string, [default: "Active", null: false]
 
       timestamps()

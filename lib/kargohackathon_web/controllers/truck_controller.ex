@@ -31,7 +31,7 @@ defmodule KargohackathonWeb.TruckController do
     truck = Schema.get_truck!(id)
 
     with {:ok, %Truck{} = truck} <- Schema.update_truck(truck, truck_params) do
-      render(conn, "show.json", truck: truck)
+      render(conn, "success.json", truck: truck)
     end
   end
 

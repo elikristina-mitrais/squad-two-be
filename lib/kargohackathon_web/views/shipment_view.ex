@@ -16,7 +16,11 @@ defmodule KargohackathonWeb.ShipmentView do
   end
 
   def render("index.json", %{shipments: shipments}) do
-    %{data: render_many(shipments, ShipmentView, "shipment.json")}
+    %{
+      error: 0,
+      error_msg: "",
+      data: %{shipments: render_many(shipments, ShipmentView, "shipment.json")}
+    }
   end
 
   def render("show.json", %{shipment: shipment}) do

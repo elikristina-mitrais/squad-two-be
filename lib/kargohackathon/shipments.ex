@@ -4,7 +4,7 @@ defmodule Kargohackathon.Shipments do
   """
 
   import Ecto.Query, warn: false
-  alias Kargohackathon.Repo
+  alias Kargohackathon.{Repo, Pagination}
 
   alias Kargohackathon.Shipments.Shipment
 
@@ -73,6 +73,12 @@ defmodule Kargohackathon.Shipments do
     |> Repo.update()
   end
 
+  def allocate_shipment(%Shipment{} = shipment, attrs) do
+    shipment
+    |> Shipment.changeset_allocate(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a shipment.
 
@@ -101,4 +107,15 @@ defmodule Kargohackathon.Shipments do
   def change_shipment(%Shipment{} = shipment, attrs \\ %{}) do
     Shipment.changeset(shipment, attrs)
   end
+
+  def list_shipment_transporter(a, page \\ 1, per_page \\ 10)
+
+  def list_shipment_transporter(:paged, page, per_page) do
+    Shipment
+    |> where(assign_to: "transporter")
+    |> order_by(asc: :inserted_at)
+    |> Pagination.page(page, per_page: per_page)
+  end
+
+  def get_shipment_transporter!(id), do: Repo.get_by!(Shipment, assign_to: "transporter")
 end

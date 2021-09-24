@@ -22,4 +22,10 @@ defmodule Kargohackathon.Shipments.Shipment do
     |> validate_required([:shipment_number, :origin, :destination, :loading_date, :status])
     |> validate_inclusion(:status, ["Active", "Inactive"])
   end
+
+  def changeset_allocate(shipment, attrs) do
+    shipment
+    |> cast(attrs, [:truck_id, :driver_id])
+    |> validate_required([:truck_id, :driver_id])
+  end
 end

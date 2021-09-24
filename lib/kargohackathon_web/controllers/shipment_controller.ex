@@ -11,6 +11,13 @@ defmodule KargohackathonWeb.ShipmentController do
     render(conn, "index.json", shipments: shipments)
   end
 
+  def index_transporter(conn, params) do
+    page = params["page"] || 1
+
+    shipments = Shipments.list_shipment_transporter(:paged, page)
+    render(conn, "index_transporter.json", shipments: shipments)
+  end
+
   def create(conn, %{"shipment" => shipment_params}) do
     with {:ok, %Shipment{} = shipment} <- Shipments.create_shipment(shipment_params) do
       conn
@@ -29,6 +36,14 @@ defmodule KargohackathonWeb.ShipmentController do
     shipment = Shipments.get_shipment!(id)
 
     with {:ok, %Shipment{} = shipment} <- Shipments.update_shipment(shipment, shipment_params) do
+      render(conn, "show.json", shipment: shipment)
+    end
+  end
+
+  def allocate(conn, %{"id" => id, "shipment" => shipment_params}) do
+    shipment = Shipments.get_shipment_transporter!(id)
+
+    with {:ok, %Shipment{} = shipment} <- Shipments.allocate_shipment(shipment, shipment_params) do
       render(conn, "show.json", shipment: shipment)
     end
   end

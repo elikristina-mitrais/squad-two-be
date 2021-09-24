@@ -9,13 +9,13 @@ defmodule Kargohackathon.Repo.Migrations.CreateTrucks do
       add :production_year, :string, [size: 4, null: false]
       add :stnk_upload, :string, null: true
       add :kir_upload, :string, null: true
-      add :status, :string, [default: "active", null: false]
+      add :status, :string, [default: "Active", null: false]
 
       timestamps()
     end
 
-    create constraint("trucks", :plate_type_value, check: "plate_type IN ('black', 'yellow')")
-    create constraint("trucks", :status_value, check: "status IN ('active', 'inactive')")
+    create constraint("trucks", :plate_type_value, check: "plate_type IN ('Black', 'Yellow')")
+    create constraint("trucks", :status_value, check: "status IN ('Active', 'Inactive')")
 
   end
 end

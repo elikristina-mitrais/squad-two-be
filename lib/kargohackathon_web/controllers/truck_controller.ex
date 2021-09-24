@@ -18,7 +18,7 @@ defmodule KargohackathonWeb.TruckController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.truck_path(conn, :show, truck))
-      |> render("show.json", truck: truck)
+      |> render("success.json", truck: truck)
     end
   end
 

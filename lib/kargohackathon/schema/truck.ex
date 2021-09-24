@@ -18,6 +18,6 @@ defmodule Kargohackathon.Schema.Truck do
   def changeset(truck, attrs) do
     truck
     |> cast(attrs, [:license_number, :truck_type, :plate_type, :production_year, :stnk_upload, :kir_upload, :status])
-    |> validate_required([:license_number, :truck_type, :plate_type, :production_year, :stnk_upload, :kir_upload, :status])
+    |> validate_required([:license_number, :truck_type, :plate_type])
   end
 end

@@ -6,9 +6,24 @@ defmodule Kargohackathon.SchemaTest do
   describe "trucks" do
     alias Kargohackathon.Schema.Truck
 
-    @valid_attrs %{kir_upload: "some kir_upload", license_number: "some license_number", plate_type: "some plate_type", production_year: "some production_year", status: "some status", stnk_upload: "some stnk_upload", truck_type: "some truck_type"}
-    @update_attrs %{kir_upload: "some updated kir_upload", license_number: "some updated license_number", plate_type: "some updated plate_type", production_year: "some updated production_year", status: "some updated status", stnk_upload: "some updated stnk_upload", truck_type: "some updated truck_type"}
-    @invalid_attrs %{kir_upload: nil, license_number: nil, plate_type: nil, production_year: nil, status: nil, stnk_upload: nil, truck_type: nil}
+    @valid_attrs %{
+      license_number: "BK 3001 DEF",
+      truck_type: "Container",
+      plate_type: "Yellow",
+      production_year: "2000",
+      stnk_upload: "",
+      kir_upload: "",
+      status: "Active"
+    }
+    @update_attrs %{
+      license_number: "BK 3001 DEF",
+      truck_type: "Container",
+      plate_type: "Yellow",
+      production_year: "2000",
+      stnk_upload: "",
+      kir_upload: ""
+    }
+    @invalid_attrs %{license_number: nil, plate_type: nil, truck_type: nil}
 
     def truck_fixture(attrs \\ %{}) do
       {:ok, truck} =
@@ -31,13 +46,11 @@ defmodule Kargohackathon.SchemaTest do
 
     test "create_truck/1 with valid data creates a truck" do
       assert {:ok, %Truck{} = truck} = Schema.create_truck(@valid_attrs)
-      assert truck.kir_upload == "some kir_upload"
-      assert truck.license_number == "some license_number"
-      assert truck.plate_type == "some plate_type"
-      assert truck.production_year == "some production_year"
-      assert truck.status == "some status"
-      assert truck.stnk_upload == "some stnk_upload"
-      assert truck.truck_type == "some truck_type"
+      assert truck.license_number == "BK 3001 DEF"
+      assert truck.plate_type == "Yellow"
+      assert truck.production_year == "2000"
+      assert truck.status == "Active"
+      assert truck.truck_type == "Container"
     end
 
     test "create_truck/1 with invalid data returns error changeset" do
@@ -47,13 +60,10 @@ defmodule Kargohackathon.SchemaTest do
     test "update_truck/2 with valid data updates the truck" do
       truck = truck_fixture()
       assert {:ok, %Truck{} = truck} = Schema.update_truck(truck, @update_attrs)
-      assert truck.kir_upload == "some updated kir_upload"
-      assert truck.license_number == "some updated license_number"
-      assert truck.plate_type == "some updated plate_type"
-      assert truck.production_year == "some updated production_year"
-      assert truck.status == "some updated status"
-      assert truck.stnk_upload == "some updated stnk_upload"
-      assert truck.truck_type == "some updated truck_type"
+      assert truck.license_number == "BK 3001 DEF"
+      assert truck.plate_type == "Yellow"
+      assert truck.production_year == "2000"
+      assert truck.truck_type == "Container"
     end
 
     test "update_truck/2 with invalid data returns error changeset" do

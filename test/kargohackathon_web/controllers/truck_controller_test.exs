@@ -5,24 +5,27 @@ defmodule KargohackathonWeb.TruckControllerTest do
   alias Kargohackathon.Schema.Truck
 
   @create_attrs %{
-    kir_upload: "some kir_upload",
-    license_number: "some license_number",
-    plate_type: "some plate_type",
-    production_year: "some production_year",
-    status: "some status",
-    stnk_upload: "some stnk_upload",
-    truck_type: "some truck_type"
+    license_number: "BK 3001 DEF",
+    truck_type: "Container",
+    plate_type: "Yellow",
+    production_year: "2000",
+    stnk_upload: "",
+    kir_upload: "",
+    status: "Active"
   }
   @update_attrs %{
-    kir_upload: "some updated kir_upload",
-    license_number: "some updated license_number",
-    plate_type: "some updated plate_type",
-    production_year: "some updated production_year",
-    status: "some updated status",
-    stnk_upload: "some updated stnk_upload",
-    truck_type: "some updated truck_type"
+    license_number: "BK 3001 DEF",
+    truck_type: "Container",
+    plate_type: "Yellow",
+    production_year: "2000",
+    stnk_upload: "",
+    kir_upload: ""
   }
-  @invalid_attrs %{kir_upload: nil, license_number: nil, plate_type: nil, production_year: nil, status: nil, stnk_upload: nil, truck_type: nil}
+  @invalid_attrs %{
+    license_number: nil,
+    plate_type: nil,
+    truck_type: nil
+  }
 
   def fixture(:truck) do
     {:ok, truck} = Schema.create_truck(@create_attrs)
@@ -36,27 +39,18 @@ defmodule KargohackathonWeb.TruckControllerTest do
   describe "index" do
     test "lists all trucks", %{conn: conn} do
       conn = get(conn, Routes.truck_path(conn, :index))
-      assert json_response(conn, 200)["data"] == []
+      assert json_response(conn, 200)["data"] == %{"trucks" => []}
     end
   end
 
   describe "create truck" do
     test "renders truck when data is valid", %{conn: conn} do
       conn = post(conn, Routes.truck_path(conn, :create), truck: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
-
-      conn = get(conn, Routes.truck_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "kir_upload" => "some kir_upload",
-               "license_number" => "some license_number",
-               "plate_type" => "some plate_type",
-               "production_year" => "some production_year",
-               "status" => "some status",
-               "stnk_upload" => "some stnk_upload",
-               "truck_type" => "some truck_type"
-             } = json_response(conn, 200)["data"]
+               "error" => 0,
+               "error_msg" => ""
+             } = json_response(conn, 201)
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -70,20 +64,11 @@ defmodule KargohackathonWeb.TruckControllerTest do
 
     test "renders truck when data is valid", %{conn: conn, truck: %Truck{id: id} = truck} do
       conn = put(conn, Routes.truck_path(conn, :update, truck), truck: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
-
-      conn = get(conn, Routes.truck_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "kir_upload" => "some updated kir_upload",
-               "license_number" => "some updated license_number",
-               "plate_type" => "some updated plate_type",
-               "production_year" => "some updated production_year",
-               "status" => "some updated status",
-               "stnk_upload" => "some updated stnk_upload",
-               "truck_type" => "some updated truck_type"
-             } = json_response(conn, 200)["data"]
+               "error" => 0,
+               "error_msg" => ""
+             } = json_response(conn, 200)
     end
 
     test "renders errors when data is invalid", %{conn: conn, truck: truck} do
@@ -99,9 +84,9 @@ defmodule KargohackathonWeb.TruckControllerTest do
       conn = delete(conn, Routes.truck_path(conn, :delete, truck))
       assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
+      assert_error_sent(404, fn ->
         get(conn, Routes.truck_path(conn, :show, truck))
-      end
+      end)
     end
   end
 

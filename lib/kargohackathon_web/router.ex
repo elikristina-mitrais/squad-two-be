@@ -12,6 +12,8 @@ defmodule KargohackathonWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug CORSPlug, origin: ["http://localhost:3000"]
+
+    resources "/trucks", KargohackathonWeb.TruckController, except: [:new, :edit]
   end
 
   scope "/", KargohackathonWeb do

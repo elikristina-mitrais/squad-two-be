@@ -3,7 +3,16 @@ defmodule KargohackathonWeb.TruckView do
   alias KargohackathonWeb.TruckView
 
   def render("index.json", %{trucks: trucks}) do
-    %{data: render_many(trucks, TruckView, "truck.json")}
+    %{
+      error: 0,
+      error_msg: "",
+      meta: %{
+        page: trucks.page,
+        limit: trucks.per_page,
+        total: trucks.count
+      },
+      data: %{trucks: render_many(trucks.list, TruckView, "truck.json")}
+    }
   end
 
   def render("show.json", %{truck: truck}) do
@@ -11,13 +20,13 @@ defmodule KargohackathonWeb.TruckView do
   end
 
   def render("truck.json", %{truck: truck}) do
-    %{id: truck.id,
+    %{
+      id: truck.id,
       license_number: truck.license_number,
       truck_type: truck.truck_type,
       plate_type: truck.plate_type,
       production_year: truck.production_year,
-      stnk_upload: truck.stnk_upload,
-      kir_upload: truck.kir_upload,
-      status: truck.status}
+      status: truck.status
+    }
   end
 end

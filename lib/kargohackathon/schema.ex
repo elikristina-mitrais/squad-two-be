@@ -4,7 +4,7 @@ defmodule Kargohackathon.Schema do
   """
 
   import Ecto.Query, warn: false
-  alias Kargohackathon.Repo
+  alias Kargohackathon.{Repo, Pagination}
 
   alias Kargohackathon.Schema.Truck
 
@@ -19,6 +19,14 @@ defmodule Kargohackathon.Schema do
   """
   def list_trucks do
     Repo.all(Truck)
+  end
+
+  def list_trucks(a, page \\ 1, per_page \\ 10)
+
+  def list_trucks(:paged, page, per_page) do
+    Truck
+    |> order_by(asc: :inserted_at)
+    |> Pagination.page(page, per_page: per_page)
   end
 
   @doc """

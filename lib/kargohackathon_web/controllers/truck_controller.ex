@@ -6,8 +6,10 @@ defmodule KargohackathonWeb.TruckController do
 
   action_fallback KargohackathonWeb.FallbackController
 
-  def index(conn, _params) do
-    trucks = Schema.list_trucks()
+  def index(conn, params) do
+    page = params["page"] || 1
+
+    trucks = Schema.list_trucks(:paged, page)
     render(conn, "index.json", trucks: trucks)
   end
 

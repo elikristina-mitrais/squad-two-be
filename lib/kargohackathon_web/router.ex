@@ -32,11 +32,13 @@ defmodule KargohackathonWeb.Router do
 
     resources "/trucks", TruckController, except: [:new, :edit]
 
-    get "/shipments", ShipmentController, :index
-    post "/shipments", ShipmentController, :create
-
     get "/transporters", ShipmentController, :index_transporter
     put "/transporters/:id", ShipmentController, :allocate
+    get "/shipments", ShipmentController, :index
+    get "/shipments/:id", ShipmentController, :show
+    post "/shipments", ShipmentController, :create
+    put "/shipments/:id", ShipmentController, :update
+    delete "/shipments/:id", ShipmentController, :delete
   end
 
   # Enables LiveDashboard only for development

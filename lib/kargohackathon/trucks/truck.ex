@@ -1,4 +1,4 @@
-defmodule Kargohackathon.Schema.Truck do
+defmodule Kargohackathon.Trucks.Truck do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,6 +10,7 @@ defmodule Kargohackathon.Schema.Truck do
     field :status, :string
     field :stnk_upload, :string
     field :truck_type, :string
+    has_many :shipment, Kargohackathon.Shipments.Shipment, foreign_key: :truck_id, references: :id
 
     timestamps()
   end

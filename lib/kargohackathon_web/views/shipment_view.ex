@@ -19,20 +19,35 @@ defmodule KargohackathonWeb.ShipmentView do
     %{
       error: 0,
       error_msg: "",
-      data: %{shipments: render_many(shipments, ShipmentView, "shipment.json")}
+      data: %{
+        shipments: render_many(shipments.list, ShipmentView, "shipment.json")
+      },
+      meta: %{
+        page: shipments.page,
+        limit: shipments.per_page,
+        total: shipments.count
+      }
     }
   end
 
   def render("show.json", %{shipment: shipment}) do
-    %{data: render_one(shipment, ShipmentView, "shipment.json")}
+    %{
+      error: 0,
+      error_msg: "",
+      data: %{shipments: render_one(shipment, ShipmentView, "shipment.json")}
+    }
+  end
+
+  def render("success.json", _) do
+    %{error: 0, error_msg: ""}
   end
 
   def render("shipment.json", %{shipment: shipment}) do
     %{
       id: shipment.id,
       shipment_number: shipment.shipment_number,
-      truck_id: shipment.truck_id,
-      driver_id: shipment.driver_id,
+      license_number: shipment.truck.license_number,
+      driver_name: shipment.driver.driver_name,
       origin: shipment.origin,
       destination: shipment.destination,
       loading_date: shipment.loading_date,

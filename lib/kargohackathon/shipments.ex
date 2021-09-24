@@ -4,7 +4,8 @@ defmodule Kargohackathon.Shipments do
   """
 
   import Ecto.Query, warn: false
-  alias Kargohackathon.{Repo, Pagination}
+  alias Kargohackathon.{Repo, PaginationShipment}
+
 
   alias Kargohackathon.Shipments.Shipment
 
@@ -19,6 +20,15 @@ defmodule Kargohackathon.Shipments do
   """
   def list_shipments do
     Repo.all(Shipment)
+    |> Repo.preload([:truck, :driver])
+  end
+
+  def list_shipments(a, page \\ 1, per_page \\ 10)
+
+  def list_shipments(:paged, page, per_page) do
+    Shipment
+    |> order_by(asc: :inserted_at)
+    |> PaginationShipment.page(page, per_page: per_page)
   end
 
   @doc """
@@ -114,7 +124,7 @@ defmodule Kargohackathon.Shipments do
     Shipment
     |> where(assign_to: "transporter")
     |> order_by(asc: :inserted_at)
-    |> Pagination.page(page, per_page: per_page)
+    |> PaginationShipment.page(page, per_page: per_page)
   end
 
   def get_shipment_transporter!(id), do: Repo.get_by!(Shipment, assign_to: "transporter")

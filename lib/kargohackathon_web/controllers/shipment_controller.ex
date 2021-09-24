@@ -6,8 +6,10 @@ defmodule KargohackathonWeb.ShipmentController do
 
   action_fallback KargohackathonWeb.FallbackController
 
-  def index(conn, _params) do
-    shipments = Shipments.list_shipments()
+  def index(conn, params) do
+    page = params["page"] || 1
+
+    shipments = Shipments.list_shipments(:paged, page)
     render(conn, "index.json", shipments: shipments)
   end
 
@@ -36,7 +38,7 @@ defmodule KargohackathonWeb.ShipmentController do
     shipment = Shipments.get_shipment!(id)
 
     with {:ok, %Shipment{} = shipment} <- Shipments.update_shipment(shipment, shipment_params) do
-      render(conn, "show.json", shipment: shipment)
+      render(conn, "success.json", shipment: shipment)
     end
   end
 

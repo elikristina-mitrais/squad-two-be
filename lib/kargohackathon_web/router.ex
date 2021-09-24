@@ -21,7 +21,7 @@ defmodule KargohackathonWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  scope "/", KargohackathonWeb do
+  scope "/api", KargohackathonWeb do
     pipe_through :api
 
     resources "/trucks", TruckController, except: [:new, :edit]

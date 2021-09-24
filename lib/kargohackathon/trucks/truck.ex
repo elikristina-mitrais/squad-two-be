@@ -10,6 +10,7 @@ defmodule Kargohackathon.Trucks.Truck do
     field :status, :string
     field :stnk_upload, :string
     field :truck_type, :string
+    has_many :shipment, {"shipment_number", Kargohackathon.Shipments.Shipment}
 
     timestamps()
   end

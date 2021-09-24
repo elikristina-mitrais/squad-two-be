@@ -6,7 +6,6 @@ defmodule KargohackathonWeb.ShipmentController do
 
   action_fallback KargohackathonWeb.FallbackController
 
-  @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index(conn, params) do
     page = params["page"] || 1
 
@@ -32,7 +31,7 @@ defmodule KargohackathonWeb.ShipmentController do
     shipment = Shipments.get_shipment!(id)
 
     with {:ok, %Shipment{} = shipment} <- Shipments.update_shipment(shipment, shipment_params) do
-      render(conn, "show.json", shipment: shipment)
+      render(conn, "success.json", shipment: shipment)
     end
   end
 

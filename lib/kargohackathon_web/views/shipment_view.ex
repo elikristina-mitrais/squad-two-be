@@ -23,15 +23,18 @@ defmodule KargohackathonWeb.ShipmentView do
     }
   end
 
+  def render("success.json",_) do
+    %{error: 0, error_msg: ""}
+  end
+
   def render("shipment.json", %{shipment: shipment}) do
     %{id: shipment.id,
       shipment_number: shipment.shipment_number,
-      truck_id: shipment.truck_id,
-      driver_id: shipment.driver_id,
+      # license_number: shipment.truck.license_number,
+      # driver_name: shipment.driver.driver_name,
       origin: shipment.origin,
       destination: shipment.destination,
       loading_date: shipment.loading_date,
-      assign_to: shipment.assign_to,
       status: shipment.status}
   end
 end

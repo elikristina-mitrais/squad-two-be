@@ -19,6 +19,7 @@ defmodule Kargohackathon.Shipments do
   """
   def list_shipments do
     Repo.all(Shipment)
+    |> Repo.preload([:truck, :driver])
   end
 
   def list_shipments(a, page \\ 1, per_page \\ 10)

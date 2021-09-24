@@ -12,8 +12,6 @@ defmodule KargohackathonWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug CORSPlug, origin: ["http://localhost:3000"]
-
-    resources "/trucks", KargohackathonWeb.TruckController, except: [:new, :edit]
   end
 
   scope "/", KargohackathonWeb do
@@ -23,9 +21,11 @@ defmodule KargohackathonWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", KargohackathonWeb do
-  #   pipe_through :api
-  # end
+  scope "/", KargohackathonWeb do
+    pipe_through :api
+
+    resources "/trucks", TruckController, except: [:new, :edit]
+  end
 
   # Enables LiveDashboard only for development
   #

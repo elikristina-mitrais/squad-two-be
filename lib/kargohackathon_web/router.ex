@@ -34,8 +34,8 @@ defmodule KargohackathonWeb.Router do
 
     post "/shipments", ShipmentController, :create
 
-    get "/transporter", ShipmentController, :index_transporter
-    put "/transporter/:id", ShipmentController, :allocate
+    get "/transporters", ShipmentController, :index_transporter
+    put "/transporters/:id", ShipmentController, :allocate
   end
 
   # Enables LiveDashboard only for development

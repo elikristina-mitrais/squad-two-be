@@ -4,7 +4,7 @@ use Mix.Config
 config :kargohackathon, Kargohackathon.Repo,
   username: "postgres",
   password: "postgres",
-  database: "squadtwo_dev",
+  database: "tms_kargo_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

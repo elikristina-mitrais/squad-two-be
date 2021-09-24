@@ -45,7 +45,10 @@ defmodule Kargohackathon.Shipments do
       ** (Ecto.NoResultsError)
 
   """
-  def get_shipment!(id), do: Repo.get!(Shipment, id)
+  def get_shipment!(id) do
+    Repo.get!(Shipment, id)
+    |> Repo.preload([:truck, :driver])
+  end
 
   @doc """
   Creates a shipment.
@@ -127,5 +130,5 @@ defmodule Kargohackathon.Shipments do
     |> PaginationShipment.page(page, per_page: per_page)
   end
 
-  def get_shipment_transporter!(id), do: Repo.get_by!(Shipment, assign_to: "transporter")
+  def get_shipment_transporter!(id), do: Repo.get_by!(id, assign_to: "transporter")
 end

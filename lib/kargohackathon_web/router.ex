@@ -32,6 +32,7 @@ defmodule KargohackathonWeb.Router do
 
     resources "/trucks", TruckController, except: [:new, :edit]
 
+    get "/shipments", ShipmentController, :index
     post "/shipments", ShipmentController, :create
 
     get "/transporters", ShipmentController, :index_transporter

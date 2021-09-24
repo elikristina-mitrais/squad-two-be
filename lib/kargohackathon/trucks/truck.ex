@@ -10,7 +10,7 @@ defmodule Kargohackathon.Trucks.Truck do
     field :status, :string
     field :stnk_upload, :string
     field :truck_type, :string
-    has_many :shipment, {"shipment_number", Kargohackathon.Shipments.Shipment}
+    has_many :shipment, Kargohackathon.Shipments.Shipment, foreign_key: :truck_id, references: :id
 
     timestamps()
   end

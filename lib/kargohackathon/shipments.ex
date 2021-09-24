@@ -4,7 +4,7 @@ defmodule Kargohackathon.Shipments do
   """
 
   import Ecto.Query, warn: false
-  alias Kargohackathon.{Repo, Pagination}
+  alias Kargohackathon.{Repo, PaginationShipment}
 
   alias Kargohackathon.Shipments.Shipment
 
@@ -27,7 +27,7 @@ defmodule Kargohackathon.Shipments do
   def list_shipments(:paged, page, per_page) do
     Shipment
     |> order_by(asc: :inserted_at)
-    |> Pagination.page(page, per_page: per_page)
+    |> PaginationShipment.page(page, per_page: per_page)
   end
 
   @doc """

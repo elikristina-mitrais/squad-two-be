@@ -8,7 +8,7 @@ defmodule Kargohackathon.Drivers.Driver do
     field :phone_number, :string
     field :sim_upload, :string
     field :status, :string, default: "Active"
-    has_many :shipment, {"shipment_number", Kargohackathon.Shipments.Shipment}
+    has_many :shipment, Kargohackathon.Shipments.Shipment, foreign_key: :truck_id, references: :id
 
     timestamps()
   end

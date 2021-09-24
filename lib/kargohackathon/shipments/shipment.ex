@@ -11,8 +11,8 @@ defmodule Kargohackathon.Shipments.Shipment do
     field :origin, :string
     field :shipment_number, :string, unique: true
     field :status, :string, default: "Assigned"
-    belongs_to :truck, Truck
-    belongs_to :driver, Driver
+    belongs_to :truck, Truck, foreign_key: :truck_id, references: :id
+    belongs_to :driver, Driver, foreign_key: :driver_id, references: :id
 
     timestamps()
   end

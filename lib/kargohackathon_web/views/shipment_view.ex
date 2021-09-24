@@ -6,7 +6,7 @@ defmodule KargohackathonWeb.ShipmentView do
     %{error: 0,
       error_msg: "",
       data: %{
-        shipments: render_many(shipments, ShipmentView, "shipment.json")
+        shipments: render_many(shipments.list, ShipmentView, "shipment.json")
       },
       meta: %{
         page: shipments.page,
@@ -30,8 +30,8 @@ defmodule KargohackathonWeb.ShipmentView do
   def render("shipment.json", %{shipment: shipment}) do
     %{id: shipment.id,
       shipment_number: shipment.shipment_number,
-      # license_number: shipment.truck.license_number,
-      # driver_name: shipment.driver.driver_name,
+      license_number: shipment.truck.license_number,
+      driver_name: shipment.driver.driver_name,
       origin: shipment.origin,
       destination: shipment.destination,
       loading_date: shipment.loading_date,

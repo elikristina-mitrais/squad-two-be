@@ -3,11 +3,26 @@ defmodule KargohackathonWeb.DriverView do
   alias KargohackathonWeb.DriverView
 
   def render("index.json", %{drivers: drivers}) do
-    %{data: render_many(drivers, DriverView, "driver.json")}
+    %{error: 0,
+      error_msg: "",
+      data: %{
+        drivers: render_many(drivers, DriverView, "driver.json")
+        }
+      }
   end
 
   def render("show.json", %{driver: driver}) do
-    %{data: render_one(driver, DriverView, "driver.json")}
+    %{error: 0,
+      error_msg: "",
+      data: %{driver: render_one(driver, DriverView, "driver.json")}
+      }
+  end
+
+  def render("success.json",_) do
+    %{
+      error: 0,
+      error_msg: ""
+    }
   end
 
   def render("driver.json", %{driver: driver}) do

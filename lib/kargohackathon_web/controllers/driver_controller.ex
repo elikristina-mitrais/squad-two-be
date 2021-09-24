@@ -16,7 +16,7 @@ defmodule KargohackathonWeb.DriverController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.driver_path(conn, :show, driver))
-      |> render("show.json", driver: driver)
+      |> render("success.json", driver: driver)
     end
   end
 
@@ -29,7 +29,7 @@ defmodule KargohackathonWeb.DriverController do
     driver = Drivers.get_driver!(id)
 
     with {:ok, %Driver{} = driver} <- Drivers.update_driver(driver, driver_params) do
-      render(conn, "show.json", driver: driver)
+      render(conn, "success.json", driver: driver)
     end
   end
 

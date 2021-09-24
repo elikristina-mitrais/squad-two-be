@@ -7,7 +7,7 @@ defmodule Kargohackathon.Drivers.Driver do
     field :ktp_upload, :string
     field :phone_number, :string
     field :sim_upload, :string
-    field :status, :string
+    field :status, :string, default: "Active"
 
     timestamps()
   end
@@ -16,6 +16,6 @@ defmodule Kargohackathon.Drivers.Driver do
   def changeset(driver, attrs) do
     driver
     |> cast(attrs, [:driver_name, :phone_number, :ktp_upload, :sim_upload, :status])
-    |> validate_required([:driver_name, :phone_number, :ktp_upload, :sim_upload, :status])
+    |> validate_required([:driver_name, :phone_number, :status])
   end
 end

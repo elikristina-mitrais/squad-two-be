@@ -23,14 +23,24 @@ defmodule KargohackathonWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", KargohackathonWeb do
     pipe_through :api
-    
+
     get "/drivers", DriverController, :index
     get "/drivers/:id", DriverController, :show
     post "/drivers", DriverController, :create
     put "/drivers/:id", DriverController, :update
     delete "/drivers/:id", DriverController, :delete
-    
-    resources "/trucks", TruckController, except: [:new, :edit]
+
+    get "/shipments", ShipmentController, :index
+    get "/shipments/:id", ShipmentController, :show
+    post "/shipments", ShipmentController, :create
+    put "/shipments/:id", ShipmentController, :update
+    delete "/shipments/:id", ShipmentController, :delete
+
+    get "/trucks", TruckController, :index
+    get "/trucks/:id", TruckController, :show
+    post "/trucks", TruckController, :create
+    put "/trucks/:id", TruckController, :update
+    delete "/trucks/:id", TruckController, :delete
   end
 
   # Enables LiveDashboard only for development

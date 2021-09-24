@@ -4,7 +4,7 @@ defmodule Kargohackathon.SchemaTest do
   alias Kargohackathon.Schema
 
   describe "trucks" do
-    alias Kargohackathon.Schema.Truck
+    alias Kargohackathon.Trucks.Truck
 
     @valid_attrs %{
       license_number: "BK 3001 DEF",

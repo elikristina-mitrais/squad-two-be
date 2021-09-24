@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :kargohackathon, Kargohackathon.Repo,
   username: "postgres",
-  password: "dbadmin123",
+  password: "postgres",
   database: "squadtwo_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

@@ -3,11 +3,24 @@ defmodule KargohackathonWeb.ShipmentView do
   alias KargohackathonWeb.ShipmentView
 
   def render("index.json", %{shipments: shipments}) do
-    %{data: render_many(shipments, ShipmentView, "shipment.json")}
+    %{error: 0,
+      error_msg: "",
+      data: %{
+        shipments: render_many(shipments, ShipmentView, "shipment.json")
+      },
+      meta: %{
+        page: shipments.page,
+        limit: shipments.per_page,
+        total: shipments.count
+      }
+    }
   end
 
   def render("show.json", %{shipment: shipment}) do
-    %{data: render_one(shipment, ShipmentView, "shipment.json")}
+    %{error: 0,
+      error_msg: "",
+      data: %{shipments: render_one(shipment, ShipmentView, "shipment.json")}
+    }
   end
 
   def render("shipment.json", %{shipment: shipment}) do

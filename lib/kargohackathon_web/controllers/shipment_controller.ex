@@ -6,8 +6,11 @@ defmodule KargohackathonWeb.ShipmentController do
 
   action_fallback KargohackathonWeb.FallbackController
 
-  def index(conn, _params) do
-    shipments = Shipments.list_shipments()
+  @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def index(conn, params) do
+    page = params["page"] || 1
+
+    shipments = Shipments.list_shipments(:paged, page)
     render(conn, "index.json", shipments: shipments)
   end
 

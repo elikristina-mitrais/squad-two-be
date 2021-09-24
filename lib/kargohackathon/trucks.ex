@@ -1,12 +1,12 @@
-defmodule Kargohackathon.Schema do
+defmodule Kargohackathon.Trucks do
   @moduledoc """
-  The Schema context.
+  The Trucks context.
   """
 
   import Ecto.Query, warn: false
   alias Kargohackathon.{Repo, Pagination}
 
-  alias Kargohackathon.Schema.Truck
+  alias Kargohackathon.Trucks.Truck
 
   @doc """
   Returns the list of trucks.

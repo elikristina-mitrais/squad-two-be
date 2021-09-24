@@ -2,7 +2,7 @@ defmodule KargohackathonWeb.TruckControllerTest do
   use KargohackathonWeb.ConnCase
 
   alias Kargohackathon.Schema
-  alias Kargohackathon.Schema.Truck
+  alias Kargohackathon.Trucks.Truck
 
   @create_attrs %{
     license_number: "BK 3001 DEF",

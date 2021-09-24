@@ -1,4 +1,4 @@
-defmodule Kargohackathon.Schema.Truck do
+defmodule Kargohackathon.Trucks.Truck do
   use Ecto.Schema
   import Ecto.Changeset
 

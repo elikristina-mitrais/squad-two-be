@@ -19,7 +19,7 @@ defmodule KargohackathonWeb.TruckView do
     %{error: 0, error_msg: "", data: %{truck: render_one(truck, TruckView, "truck.json")}}
   end
 
-  def render("success.json", %{truck: truck}) do
+  def render("success.json",_) do
     %{error: 0, error_msg: ""}
   end
 

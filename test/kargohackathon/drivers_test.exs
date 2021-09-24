@@ -6,8 +6,8 @@ defmodule Kargohackathon.DriversTest do
   describe "drivers" do
     alias Kargohackathon.Drivers.Driver
 
-    @valid_attrs %{driver_name: "some driver_name", ktp_upload: "some ktp_upload", phone_number: "some phone_number", sim_upload: "some sim_upload", status: "some status"}
-    @update_attrs %{driver_name: "some updated driver_name", ktp_upload: "some updated ktp_upload", phone_number: "some updated phone_number", sim_upload: "some updated sim_upload", status: "some updated status"}
+    @valid_attrs %{driver_name: "some driver_name", ktp_upload: "some ktp_upload", phone_number: "some phone_number", sim_upload: "some sim_upload", status: "Active"}
+    @update_attrs %{driver_name: "some updated driver_name", ktp_upload: "some updated ktp_upload", phone_number: "some updated phone_number", sim_upload: "some updated sim_upload", status: "Inactive"}
     @invalid_attrs %{driver_name: nil, ktp_upload: nil, phone_number: nil, sim_upload: nil, status: nil}
 
     def driver_fixture(attrs \\ %{}) do
@@ -35,7 +35,7 @@ defmodule Kargohackathon.DriversTest do
       assert driver.ktp_upload == "some ktp_upload"
       assert driver.phone_number == "some phone_number"
       assert driver.sim_upload == "some sim_upload"
-      assert driver.status == "some status"
+      assert driver.status == "Active"
     end
 
     test "create_driver/1 with invalid data returns error changeset" do
@@ -49,7 +49,7 @@ defmodule Kargohackathon.DriversTest do
       assert driver.ktp_upload == "some updated ktp_upload"
       assert driver.phone_number == "some updated phone_number"
       assert driver.sim_upload == "some updated sim_upload"
-      assert driver.status == "some updated status"
+      assert driver.status == "Inactive"
     end
 
     test "update_driver/2 with invalid data returns error changeset" do

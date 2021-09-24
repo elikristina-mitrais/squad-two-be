@@ -27,6 +27,7 @@ defmodule KargohackathonWeb.Router do
     get "/drivers/:id", DriverController, :show
     post "/drivers", DriverController, :create
     put "/drivers/:id", DriverController, :update
+    delete "/drivers/:id", DriverController, :delete
   end
 
   # Enables LiveDashboard only for development

@@ -9,14 +9,14 @@ defmodule KargohackathonWeb.DriverControllerTest do
     ktp_upload: "some ktp_upload",
     phone_number: "some phone_number",
     sim_upload: "some sim_upload",
-    status: "some status"
+    status: "Active"
   }
   @update_attrs %{
     driver_name: "some updated driver_name",
     ktp_upload: "some updated ktp_upload",
     phone_number: "some updated phone_number",
     sim_upload: "some updated sim_upload",
-    status: "some updated status"
+    status: "Inactive"
   }
   @invalid_attrs %{driver_name: nil, ktp_upload: nil, phone_number: nil, sim_upload: nil, status: nil}
 

@@ -17,5 +17,6 @@ defmodule Kargohackathon.Drivers.Driver do
     driver
     |> cast(attrs, [:driver_name, :phone_number, :ktp_upload, :sim_upload, :status])
     |> validate_required([:driver_name, :phone_number, :status])
+    |> validate_inclusion(:status, ["Active", "Inactive"])
   end
 end
